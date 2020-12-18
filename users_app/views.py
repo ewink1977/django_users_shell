@@ -1,3 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 
-# Create your views here.
+def users_home(request):
+    print('This is the USERS HOME page.')
+    return HttpResponse('<h1>USERS HOME PAGE!</h1>')
+
+

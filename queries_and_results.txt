@@ -1,0 +1,52 @@
+Query - Create 3 New Users >
+
+In [2]: Users.objects.create(first_name="Erin", last_name="Winking", email_address="otakuphotog@gmail.com", age=43)
+In [5]: Users.objects.create(first_name="Miku", last_name="Hatsune", email_address="miku@vocaloid.com", age=17)
+Out[5]: <Users: Users object (2)>
+In [7]: Users.objects.create(first_name="Makie", last_name="Sasaki", email_address="makie@mahora.edu", age=15)
+Out[7]: <Users: Users object (3)>
+
+Query - Retrieve All Users
+
+In [2]: Users.objects.all()
+Out[2]: <QuerySet [<Users object: Erin Winking otakuphotog@gmail.com 43 2020-12-18 05:36:05.914156+00:00, <Users object: Miku Hatsun
+e miku@vocaloid.com 17 2020-12-18 05:38:33.217822+00:00, <Users object: Makie Sasaki makie@mahora.edu 15 2020-12-18 05:41:44.208108+
+00:00]>
+
+Query - Reteieve the last Users
+
+In [4]: Users.objects.last()
+Out[4]: <Users object: Makie Sasaki makie@mahora.edu 15 2020-12-18 05:41:44.208108+00:00
+
+Query - Retrieve the first user
+
+In [5]: Users.objects.first()
+Out[5]: <Users object: Erin Winking otakuphotog@gmail.com 43 2020-12-18 05:36:05.914156+00:00
+
+Query: Change the user with id=3 so their last name is Pancakes.
+
+In [6]: c = Users.objects.get(id=3)
+In [7]: c.last_name = "Pancakes"
+In [8]: c.save()
+In [9]: Users.objects.get(id=3)
+Out[9]: <Users object: Makie Pancakes makie@mahora.edu 15 2020-12-18 05:41:44.208108+00:00
+
+Query: Delete the user with id=2 from the database
+
+In [10]: c = Users.objects.get(id=2)
+In [11]: c.delete()
+Out[11]: (1, {'users_app.Users': 1})
+In [12]: Users.objects.all()
+Out[12]: <QuerySet [<Users object: Erin Winking otakuphotog@gmail.com 43 2020-12-18 05:36:05.914156+00:00, <Users object: Makie Pancakes makie@mahora.edu 15 2020-12-18 05:41:44.208108+00:00]>
+
+Query: Get all the users, sorted by their first name
+
+In [15]: Users.objects.all().order_by("first_name")
+Out[15]: <QuerySet [<Users object: Erin Winking otakuphotog@gmail.com 43 2020-12-18 05:36:05.914156+00:00, <Users object: Makie Pancakes makie@mahora.edu 15 2020-12-18 05:41:44.208108+00:00]>
+
+BONUS Query: Get all the users, sorted by their first name in descending order
+
+In [16]: Users.objects.all().order_by("-first_name")
+Out[16]: <QuerySet [<Users object: Makie Pancakes makie@mahora.edu 15 2020-12-18 05:41:44.208108+00:00, <Users object: Erin Winking
+otakuphotog@gmail.com 43 2020-12-18 05:36:05.914156+00:00]>
+
